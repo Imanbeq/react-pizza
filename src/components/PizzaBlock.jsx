@@ -1,36 +1,48 @@
 import React, { useState } from "react";
 
-const PizzaBlock = ({ title, price }) => {
+const PizzaBlock = ({ title, price, imageUrl, sizes, types }) => {
   const [pizza, setPizzaCount] = useState(0);
+  const [activeType, setActiveType] = useState(0);
+  const [activeSize, setActiveSize] = useState(0);
   
-  const onclickAdd = () => {
+
+  const onClickAdd = () => {
     setPizzaCount(pizza + 1);
   };
 
+  const typeNames = ["тонкое", "традиционное"];
+
   return (
     <div className="pizza-block">
-      <img
-        className="pizza-block__image"
-        src="https://media.dodostatic.net/image/r:584x584/0195aab2ad7f75a4be7fc533259cd34d.avif"
-        alt="Pizza"
-      />
+      <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
       <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>
-          <li className="active">тонкое</li>
-          <li>традиционное</li>
+          {types.map((typeId) => (
+            <li
+              onClick={() => setActiveType(typeId)}
+              className={activeType === typeId ? "active" : ""}
+            >
+              {typeNames[typeId]}
+            </li>
+          ))}
         </ul>
         <ul>
-          <li className="active">26 см.</li>
-          <li>30 см.</li>
-          <li>40 см.</li>
+          {sizes.map((size, i) => (
+            <li
+              onClick={() => setActiveSize(i)}
+              className={activeSize === i ? "active" : ""}
+            >
+              {size} см.
+            </li>
+          ))}
         </ul>
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">{price}</div>
         <button
           className="button button--outline button--add"
-          onClick={onclickAdd}
+          onClick={onClickAdd}
         >
           <svg
             width="12"
