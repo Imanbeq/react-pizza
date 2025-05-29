@@ -52,6 +52,8 @@ const Home = () => {
       .then((res) => {
         setItems(res.data);
         setIsLoading(false);
+        console.log(res);
+        
       })
       .catch((err) => {
         if (err.response && err.response.status === 404) {
