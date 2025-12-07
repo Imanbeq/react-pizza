@@ -89,7 +89,9 @@ const Home: React.FC = () => {
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
   const pizzas = items.map((obj: any) => (
-    <Link to={`/pizza/${obj.id}`}><PizzaBlock key={obj.id} {...obj} /></Link>
+    <Link to={`/pizza/${obj.id}`}>
+      <PizzaBlock key={obj.id} {...obj} />
+    </Link>
   ));
 
   const skeletons = [...new Array(6)].map((_, index) => (

@@ -4,8 +4,8 @@ import { setSort, selectFilter } from "../redux/slices/filterSlice";
 
 type SortItem = {
   name: string;
-  sortProperty: string; 
-}
+  sortProperty: string;
+};
 
 export const sortList: SortItem[] = [
   { name: "популярности (DECS)", sortProperty: "rating" },
@@ -29,9 +29,8 @@ const Sort = () => {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      const path = event.composedPath();
-      if (!path.includes(sortRef.current)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (sortRef.current && !event.composedPath().includes(sortRef.current)) {
         setOpen(false);
       }
     };
